@@ -285,7 +285,7 @@ drop policy if exists "View stock records" on public.stock_management_records;
 create policy "View stock records" on public.stock_management_records for select to authenticated using (true);
 drop policy if exists "Create stock records" on public.stock_management_records;
 create policy "Create stock records" on public.stock_management_records for insert to authenticated
-with check (created_by = auth.uid() and public.current_user_role() in ('Admin', 'Inspector'));
+with check (created_by = auth.uid() and public.current_user_role() in ('Admin', 'QA Personnel', 'Inspector'));
 drop policy if exists "Update stock records" on public.stock_management_records;
 create policy "Update stock records" on public.stock_management_records for update to authenticated
 using (public.current_user_role() in ('Admin', 'QA Personnel') or (public.current_user_role() = 'Inspector' and created_by = auth.uid()))
@@ -297,7 +297,7 @@ drop policy if exists "View raw records" on public.raw_material_receiving_record
 create policy "View raw records" on public.raw_material_receiving_records for select to authenticated using (true);
 drop policy if exists "Create raw records" on public.raw_material_receiving_records;
 create policy "Create raw records" on public.raw_material_receiving_records for insert to authenticated
-with check (created_by = auth.uid() and public.current_user_role() in ('Admin', 'Inspector'));
+with check (created_by = auth.uid() and public.current_user_role() in ('Admin', 'QA Personnel', 'Inspector'));
 drop policy if exists "Update raw records" on public.raw_material_receiving_records;
 create policy "Update raw records" on public.raw_material_receiving_records for update to authenticated
 using (public.current_user_role() in ('Admin', 'QA Personnel') or (public.current_user_role() = 'Inspector' and created_by = auth.uid()))
@@ -309,7 +309,7 @@ drop policy if exists "View truck records" on public.delivery_truck_records;
 create policy "View truck records" on public.delivery_truck_records for select to authenticated using (true);
 drop policy if exists "Create truck records" on public.delivery_truck_records;
 create policy "Create truck records" on public.delivery_truck_records for insert to authenticated
-with check (created_by = auth.uid() and public.current_user_role() in ('Admin', 'Inspector'));
+with check (created_by = auth.uid() and public.current_user_role() in ('Admin', 'QA Personnel', 'Inspector'));
 drop policy if exists "Update truck records" on public.delivery_truck_records;
 create policy "Update truck records" on public.delivery_truck_records for update to authenticated
 using (public.current_user_role() in ('Admin', 'QA Personnel') or (public.current_user_role() = 'Inspector' and created_by = auth.uid()))
@@ -321,7 +321,7 @@ drop policy if exists "View pest records" on public.pest_control_records;
 create policy "View pest records" on public.pest_control_records for select to authenticated using (true);
 drop policy if exists "Create pest records" on public.pest_control_records;
 create policy "Create pest records" on public.pest_control_records for insert to authenticated
-with check (created_by = auth.uid() and public.current_user_role() in ('Admin', 'Inspector'));
+with check (created_by = auth.uid() and public.current_user_role() in ('Admin', 'QA Personnel', 'Inspector'));
 drop policy if exists "Update pest records" on public.pest_control_records;
 create policy "Update pest records" on public.pest_control_records for update to authenticated
 using (public.current_user_role() in ('Admin', 'QA Personnel') or (public.current_user_role() = 'Inspector' and created_by = auth.uid()))
@@ -333,7 +333,7 @@ drop policy if exists "View oil records" on public.oil_temperature_records;
 create policy "View oil records" on public.oil_temperature_records for select to authenticated using (true);
 drop policy if exists "Create oil records" on public.oil_temperature_records;
 create policy "Create oil records" on public.oil_temperature_records for insert to authenticated
-with check (created_by = auth.uid() and public.current_user_role() in ('Admin', 'Inspector'));
+with check (created_by = auth.uid() and public.current_user_role() in ('Admin', 'QA Personnel', 'Inspector'));
 drop policy if exists "Update oil records" on public.oil_temperature_records;
 create policy "Update oil records" on public.oil_temperature_records for update to authenticated
 using (public.current_user_role() in ('Admin', 'QA Personnel') or (public.current_user_role() = 'Inspector' and created_by = auth.uid()))
@@ -345,7 +345,7 @@ drop policy if exists "View cleaning records" on public.cleaning_sanitation_reco
 create policy "View cleaning records" on public.cleaning_sanitation_records for select to authenticated using (true);
 drop policy if exists "Create cleaning records" on public.cleaning_sanitation_records;
 create policy "Create cleaning records" on public.cleaning_sanitation_records for insert to authenticated
-with check (created_by = auth.uid() and public.current_user_role() in ('Admin', 'Inspector'));
+with check (created_by = auth.uid() and public.current_user_role() in ('Admin', 'QA Personnel', 'Inspector'));
 drop policy if exists "Update cleaning records" on public.cleaning_sanitation_records;
 create policy "Update cleaning records" on public.cleaning_sanitation_records for update to authenticated
 using (public.current_user_role() in ('Admin', 'QA Personnel') or (public.current_user_role() = 'Inspector' and created_by = auth.uid()))

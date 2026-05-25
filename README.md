@@ -9,7 +9,7 @@ This version does not use PHP, MySQL, phpMyAdmin, XAMPP, or server-side sessions
 - Supabase Auth login
 - Role-based access:
   - Admin: full access
-  - QA Personnel: view records and verify records
+  - QA Personnel: add, view, edit, and verify records
   - Inspector: add records and edit records they created
   - Viewer: read-only access
 - Responsive dashboard with cards and charts

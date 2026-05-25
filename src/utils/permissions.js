@@ -13,7 +13,7 @@ export function isInspector(profile) {
 }
 
 export function canCreate(profile) {
-  return isAdmin(profile) || isInspector(profile);
+  return isAdmin(profile) || isQa(profile) || isInspector(profile);
 }
 
 export function canEdit(profile, record) {
@@ -33,4 +33,3 @@ export function canManageUsers(profile) {
 export function roleLabel(profile) {
   return profile?.role || 'Viewer';
 }
-
