@@ -57,9 +57,7 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <p className="mt-5 break-words text-xs leading-5 text-muted">
-          Create users in Supabase Auth, then set their role in the `profiles` table. Only the anon key is used in this frontend.
-        </p>
+       
       </section>
     </main>
   );
