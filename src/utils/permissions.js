@@ -13,7 +13,7 @@ export function isInspector(profile) {
 }
 
 export function canCreate(profile) {
-  return isAdmin(profile) || isQa(profile) || isInspector(profile);
+  return Boolean(profile);
 }
 
 export function canEdit(profile, record) {

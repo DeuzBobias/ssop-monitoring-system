@@ -11,7 +11,7 @@ This version does not use PHP, MySQL, phpMyAdmin, XAMPP, or server-side sessions
   - Admin: full access
   - QA Personnel: add, view, edit, and verify records
   - Inspector: add records and edit records they created
-  - Viewer: read-only access
+  - Viewer: view records; the deployed classroom/demo version can also show Add Record when authenticated
 - Responsive dashboard with cards and charts
 - CRUD modules for:
   - Stock Management & Control
