@@ -1,0 +1,178 @@
+const yesNo = ['Yes', 'No'];
+
+export const modules = [
+  {
+    key: 'stock-management',
+    title: 'Stock Management & Control',
+    shortTitle: 'Stock Management',
+    table: 'stock_management_records',
+    route: '/stock-management',
+    dateField: 'record_date',
+    statusField: 'storage_condition',
+    statusLabel: 'Storage Condition',
+    correctiveField: 'corrective_action',
+    qaField: 'verified_by_qa',
+    fields: [
+      { name: 'warehouse_location', label: 'Warehouse Location', type: 'text', required: true },
+      { name: 'checked_by', label: 'Checked By', type: 'text', required: true },
+      { name: 'record_date', label: 'Date', type: 'date', required: true },
+      { name: 'record_time', label: 'Time', type: 'time', required: true },
+      { name: 'product_name', label: 'Product Name', type: 'text', required: true },
+      { name: 'batch_lot_no', label: 'Batch No. / Lot No.', type: 'text', required: true },
+      { name: 'quantity_in_stock', label: 'Quantity in Stock', type: 'number', required: true, step: '0.01' },
+      { name: 'expiry_date', label: 'Expiry Date', type: 'date', required: true },
+      { name: 'storage_condition', label: 'Storage Condition', type: 'select', required: true, options: ['Good', 'Needs Attention'] },
+      { name: 'fifo_fefo_followed', label: 'FIFO / FEFO Followed', type: 'select', required: true, options: yesNo },
+      { name: 'inspector_initials', label: 'Inspector Initials', type: 'text', required: true },
+      { name: 'corrective_action', label: 'Corrective Action, if any', type: 'textarea' },
+      { name: 'verified_by_qa', label: 'Verified By QA', type: 'text' },
+    ],
+  },
+  {
+    key: 'raw-materials',
+    title: 'Handling and Receiving of Raw Materials',
+    shortTitle: 'Raw Materials Receiving',
+    table: 'raw_material_receiving_records',
+    route: '/raw-materials',
+    dateField: 'receiving_date',
+    statusField: 'accepted_rejected',
+    statusLabel: 'Disposition',
+    correctiveField: 'remarks_corrective_action',
+    qaField: 'verified_by_qa',
+    instructions: 'Record deliveries upon receipt, inspect packaging, check moisture or expiry, and document acceptance or rejection.',
+    fields: [
+      { name: 'supplier_name', label: 'Supplier Name', type: 'text', required: true },
+      { name: 'scheduled_delivery_date', label: 'Approved Agreed Scheduled Date of Delivery', type: 'date', required: true },
+      { name: 'receiving_date', label: 'Receiving Date', type: 'date', required: true },
+      { name: 'delivery_vehicle_id', label: 'Delivery Vehicle ID', type: 'text', required: true },
+      { name: 'quality_control_inspector', label: 'Quality Control Inspector', type: 'text', required: true },
+      { name: 'record_time', label: 'Time', type: 'time', required: true },
+      { name: 'raw_material', label: 'Raw Material', type: 'text', required: true },
+      { name: 'packaging_condition', label: 'Packaging Condition', type: 'select', required: true, options: ['Good', 'Damaged'] },
+      { name: 'moisture_expiry', label: 'Moisture Content / Expiry Date', type: 'text', required: true },
+      { name: 'within_specs', label: 'Within Specs', type: 'select', required: true, options: yesNo },
+      { name: 'quantity', label: 'Quantity', type: 'number', required: true, step: '0.01' },
+      { name: 'accepted_rejected', label: 'Accepted / Rejected', type: 'select', required: true, options: ['Accepted', 'Rejected'] },
+      { name: 'inspector_initials', label: 'Inspector Initials', type: 'text', required: true },
+      { name: 'received_by', label: 'Received By', type: 'text', required: true },
+      { name: 'remarks_corrective_action', label: 'Remarks / Corrective Action', type: 'textarea' },
+      { name: 'verified_by_qa', label: 'Verified By QA', type: 'text' },
+    ],
+  },
+  {
+    key: 'delivery-truck',
+    title: 'Cleanliness and Maintenance of Delivery Truck',
+    shortTitle: 'Delivery Truck Monitoring',
+    table: 'delivery_truck_records',
+    route: '/delivery-truck',
+    dateField: 'record_date',
+    statusField: 'maintenance_issues',
+    statusLabel: 'Maintenance Issues',
+    correctiveField: 'corrective_action',
+    qaField: 'verified_by_qa',
+    fields: [
+      { name: 'truck_plate_no', label: 'Truck Plate No.', type: 'text', required: true },
+      { name: 'driver_name', label: 'Driver Name', type: 'text', required: true },
+      { name: 'checked_by', label: 'Checked By', type: 'text', required: true },
+      { name: 'record_date', label: 'Date', type: 'date', required: true },
+      { name: 'record_time', label: 'Time', type: 'time', required: true },
+      { name: 'exterior_condition', label: 'Exterior Condition', type: 'select', required: true, options: ['Clean', 'Dirty'] },
+      { name: 'interior_condition', label: 'Interior Condition', type: 'select', required: true, options: ['Clean', 'Dirty'] },
+      { name: 'odor', label: 'Odor', type: 'select', required: true, options: ['Normal', 'Unusual'] },
+      { name: 'pest_activity', label: 'Pest Activity', type: 'select', required: true, options: yesNo },
+      { name: 'sanitized', label: 'Sanitized', type: 'select', required: true, options: yesNo },
+      { name: 'maintenance_issues', label: 'Maintenance Issues', type: 'select', required: true, options: yesNo },
+      { name: 'inspector_initials', label: 'Inspector Initials', type: 'text', required: true },
+      { name: 'corrective_action', label: 'Corrective Action, if any', type: 'textarea' },
+      { name: 'verified_by_qa', label: 'Verified By QA', type: 'text' },
+    ],
+  },
+  {
+    key: 'pest-control',
+    title: 'Pest Control Monitoring',
+    shortTitle: 'Pest Control',
+    table: 'pest_control_records',
+    route: '/pest-control',
+    dateField: 'inspection_date',
+    statusField: 'pest_activity_observed',
+    statusLabel: 'Pest Activity Observed',
+    correctiveField: 'corrective_action_taken',
+    qaField: 'verified_by_qa',
+    instructions: 'Conduct daily inspections. If pest activity is observed, document pest type and corrective action. QA reviews and verifies the log.',
+    fields: [
+      { name: 'inspection_date', label: 'Inspection Date', type: 'date', required: true },
+      { name: 'inspector_name', label: 'Inspector Name', type: 'text', required: true },
+      { name: 'inspection_area', label: 'Inspection Area', type: 'text', required: true },
+      { name: 'pest_activity_observed', label: 'Pest Activity Observed', type: 'select', required: true, options: yesNo },
+      { name: 'type_of_pest', label: 'Type of Pest, if any', type: 'text' },
+      { name: 'corrective_action_taken', label: 'Corrective Action Taken', type: 'textarea' },
+      { name: 'inspector_initials', label: 'Inspector Initials', type: 'text', required: true },
+      { name: 'verified_by_qa', label: 'Verified By QA', type: 'text' },
+    ],
+  },
+  {
+    key: 'oil-temperature',
+    title: 'Oil Temperature in Deep Frying / CCP Monitoring Record',
+    shortTitle: 'Oil Temperature / Deep Frying',
+    table: 'oil_temperature_records',
+    route: '/oil-temperature',
+    dateField: 'production_date',
+    statusField: 'status',
+    statusLabel: 'Temperature Status',
+    correctiveField: 'corrective_action',
+    qaField: 'verified_by_qa',
+    fields: [
+      { name: 'production_date', label: 'Production Date', type: 'date', required: true },
+      { name: 'batch_lot_no', label: 'Batch / Lot No.', type: 'text', required: true },
+      { name: 'operator_name_id', label: 'Operator Name / ID No.', type: 'text', required: true },
+      { name: 'record_time', label: 'Time', type: 'time', required: true },
+      { name: 'oil_temperature_celsius', label: 'Oil Temperature in Celsius', type: 'number', required: true, step: '0.1' },
+      { name: 'operator_initial', label: 'Operator Initial', type: 'text', required: true },
+      { name: 'corrective_action', label: 'Corrective Action, if any', type: 'textarea' },
+      { name: 'verified_by_qa', label: 'Verified By QA', type: 'text' },
+    ],
+    computedFields: ['status'],
+    statusOptions: ['Normal', 'Below Range', 'Above Range'],
+  },
+  {
+    key: 'cleaning-sanitation',
+    title: 'Cleaning and Sanitation Log Sheet',
+    shortTitle: 'Cleaning & Sanitation',
+    table: 'cleaning_sanitation_records',
+    route: '/cleaning-sanitation',
+    dateField: 'record_date',
+    statusField: 'standard',
+    statusLabel: 'Standard',
+    correctiveField: 'action_taken',
+    qaField: 'verified_by_qa',
+    fields: [
+      { name: 'record_date', label: 'Date', type: 'date', required: true },
+      { name: 'record_time', label: 'Time', type: 'time', required: true },
+      { name: 'area_of_concern', label: 'Area of Concern', type: 'text', required: true },
+      { name: 'standard', label: 'Standard', type: 'select', required: true, options: yesNo },
+      { name: 'action_taken', label: 'Action Taken', type: 'textarea' },
+      { name: 'sanitizer_used', label: 'Sanitizer Used', type: 'text', required: true },
+      { name: 'performed_by', label: 'Performed By', type: 'text', required: true },
+      { name: 'checked_by', label: 'Checked By', type: 'text', required: true },
+      { name: 'verified_by_qa', label: 'Verified By QA', type: 'text' },
+    ],
+  },
+];
+
+export function getModule(key) {
+  return modules.find((module) => module.key === key);
+}
+
+export function getStatusOptions(module) {
+  if (module.statusOptions) return module.statusOptions;
+  const field = module.fields.find((item) => item.name === module.statusField);
+  return field?.options || [];
+}
+
+export function emptyRecord(module) {
+  return module.fields.reduce((record, field) => {
+    record[field.name] = '';
+    return record;
+  }, {});
+}
+
