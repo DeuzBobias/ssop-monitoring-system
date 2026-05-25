@@ -18,7 +18,8 @@ export default function ModulePage({ module }) {
   const [searchParams] = useSearchParams();
   const mode = searchParams.get('mode') || (id ? 'view' : 'list');
   const navigate = useNavigate();
-  const { profile } = useAuth();
+  const { profile, user } = useAuth();
+  const actorId = profile?.id || user?.id;
   const [records, setRecords] = useState([]);
   const [record, setRecord] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -64,15 +65,15 @@ export default function ModulePage({ module }) {
       item.updated_at,
     ]);
     downloadCsv(`${module.key}-${new Date().toISOString().slice(0, 10)}.csv`, headers, rows);
-    logActivity({ userId: profile.id, action: 'Export CSV', module: module.shortTitle, description: `Exported ${module.shortTitle} records.` });
+    logActivity({ userId: actorId, action: 'Export CSV', module: module.shortTitle, description: `Exported ${module.shortTitle} records.` });
   };
 
   const submitRecord = async (values) => {
     setSaving(true);
     try {
-      const saved = await saveRecord(module, values, profile.id, mode === 'edit' ? id : null);
+      const saved = await saveRecord(module, values, actorId, mode === 'edit' ? id : null);
       await logActivity({
-        userId: profile.id,
+        userId: actorId,
         action: mode === 'edit' ? 'Edit' : 'Add',
         module: module.shortTitle,
         recordId: saved.id,
@@ -90,17 +91,17 @@ export default function ModulePage({ module }) {
   const removeRecord = async (item) => {
     if (!canDelete(profile) || !confirm('Delete this record? This action cannot be undone.')) return;
     await deleteRecord(module, item.id);
-    await logActivity({ userId: profile.id, action: 'Delete', module: module.shortTitle, recordId: item.id, description: `Deleted ${module.shortTitle} record.` });
+    await logActivity({ userId: actorId, action: 'Delete', module: module.shortTitle, recordId: item.id, description: `Deleted ${module.shortTitle} record.` });
     setMessage('Record deleted.');
     loadRecords();
   };
 
   const verifyRecord = async () => {
     if (!isQa(profile) && profile?.role !== 'Admin') return;
-    const verifiedBy = profile.full_name || profile.email;
-    const saved = await saveRecord(module, { ...record, [module.qaField]: verifiedBy }, profile.id, record.id);
+    const verifiedBy = profile?.full_name || profile?.email || user?.email;
+    const saved = await saveRecord(module, { ...record, [module.qaField]: verifiedBy }, actorId, record.id);
     setRecord(saved);
-    await logActivity({ userId: profile.id, action: 'Verify', module: module.shortTitle, recordId: record.id, description: `QA verified ${module.shortTitle} record.` });
+    await logActivity({ userId: actorId, action: 'Verify', module: module.shortTitle, recordId: record.id, description: `QA verified ${module.shortTitle} record.` });
     setMessage('Record verified.');
   };
 
@@ -202,4 +203,3 @@ export default function ModulePage({ module }) {
     </div>
   );
 }
-

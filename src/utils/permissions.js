@@ -13,7 +13,7 @@ export function isInspector(profile) {
 }
 
 export function canCreate(profile) {
-  return Boolean(profile);
+  return true;
 }
 
 export function canEdit(profile, record) {
